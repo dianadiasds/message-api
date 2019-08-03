@@ -1,16 +1,10 @@
-const express = require('express')
-const app = express()
+const Sequelize = require('sequelize');
+const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:secret@localhost:5432/postgres';
+const db = new Sequelize(connectionString);
 
-const bodyParser = require('body-parser')
-const parserMiddleware = bodyParser.json()
-app.use(parserMiddleware)
+db
+    .sync()
+    .then(() => console.log('Database schema updated'))
+    .catch(console.error);
 
-const movieRouter = require('./movie/router.js')
-app.use(movieRouter)
-
-const port = 5000
-
-app.listen(port, () => {
-    console.log(`listening on port ${port}`)
-})
-
+module.exports = db;

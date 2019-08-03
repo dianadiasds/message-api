@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const db = require('../db.js')
+const Sequelize = require('sequelize');
+const db = require('../sequelize-rest.js');
 
 const Movie = db.define(
     'movie',
@@ -8,5 +8,5 @@ const Movie = db.define(
         yearOfRelease: Sequelize.INTEGER,
         synopsis: Sequelize.STRING
     }
-)
-module.exports = Movie
+);
+module.exports = Movie;
